@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SNPM — Smart National Park Management (Neon)</title>
+<meta name="description" content="SNPM — Smart National Park Management. Fire risk, poaching risk, visitor forecast, wildlife detection. Red & black neon themed landing page with detailed AI model documentation.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070406;
+    --card:#0b0a0a;
+    --muted:#c7c7c7;
+    --neon-red: #ff2156;
+    --neon-pulse: rgba(255,33,86,0.18);
+    --glass: rgba(255,255,255,0.02);
+    --accent: #ff2156;
+    --accent-2: #ff7b9a;
+    --white:#f8f8f8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:linear-gradient(180deg,#040203 0%,#0b0707 100%);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:var(--white);-webkit-font-smoothing:antialiased}
+  /* container */
+  .wrap{max-width:1200px;margin:28px auto;padding:20px}
+  header{display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{
+    width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#260004,var(--neon-red));
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#200;box-shadow:0 8px 40px var(--neon-pulse), inset 0 -6px 30px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+    text-shadow:0 2px 10px rgba(255,33,86,0.7);
+  }
+  h1{margin:0;font-size:22px;letter-spacing:0.2px}
+  p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
+  /* layout */
+  .layout{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:18px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 8px 30px rgba(0,0,0,0.7)}
+  /* neon heading */
+  .neon{
+    color:var(--neon-red);font-weight:800;text-shadow:
+      0 0 10px rgba(255,33,86,0.14),
+      0 0 20px rgba(255,33,86,0.12),
+      0 0 40px rgba(255,33,86,0.08);
+    font-size:18px;
+  }
+  .sub{color:var(--muted);font-size:13px;margin-top:6px}
+  /* buttons */
+  .cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .btn{
+    background:linear-gradient(90deg,var(--neon-red),var(--accent-2));
+    color:#100; padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none;
+    box-shadow:0 6px 30px var(--neon-pulse), 0 2px 8px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover{transform:translateY(-4px);box-shadow:0 14px 50px rgba(255,33,86,0.14)}
+  .btn.ghost{background:transparent;color:var(--neon-red);border:1px solid rgba(255,33,86,0.12)}
+  /* sections */
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .feature{padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+  .code{background:#0b0710;padding:12px;border-radius:8px;color:#f3c7d3;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;font-size:13px;overflow:auto}
+  .muted{color:var(--muted);font-size:13px}
+  /* demo UI */
+  .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .control{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  input[type=range]{width:160px}
+  input[type=number], select, input[type=text]{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:var(--white)}
+  .output{margin-top:8px;padding:10px;background:rgba(255,255,255,0.02);border-radius:8px;font-weight:700}
+  /* sidebar */
+  aside .stat{padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));margin-bottom:12px;text-align:center}
+  .module-list{display:flex;flex-direction:column;gap:8px}
+  .module{padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+  /* AI Model details */
+  .ai-block{margin-top:12px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,33,86,0.02), rgba(255,255,86,0.00));border:1px solid rgba(255,33,86,0.03)}
+  .ai-block h4{margin:6px 0}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  table th, table td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:left;font-size:13px}
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,33,86,0.08);color:var(--neon-red);font-weight:700}
+  /* footer */
+  footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center;padding-bottom:60px}
+  /* responsiveness */
+  @media(max-width:980px){.layout{grid-template-columns:1fr}.features{grid-template-columns:1fr}}
+  /* neon pulse animation for headings */
+  @keyframes neonPulse {0%{text-shadow:0 0 6px rgba(255,33,86,0.06)}50%{text-shadow:0 0 22px rgba(255,33,86,0.2)}100%{text-shadow:0 0 6px rgba(255,33,86,0.06)}}
+  .neon.animated{animation:neonPulse 2s infinite ease-in-out}
+  /* pop neon lights (floating glints) */
+  .glint{position:relative}
+  .glint:after{content:"";position:absolute;right:-6px;top:-6px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff,#ff6b88,transparent);opacity:0.6;filter:blur(6px);transform:translateY(-6px);animation:glow 2s infinite}
+  @keyframes glow {0%{opacity:0.2}50%{opacity:0.9;transform:translateY(0)}100%{opacity:0.2}}
+</style>
+</head>
+<body>
+<!-- animated canvas background -->
+<canvas id="bgCanvas" style="position:fixed;inset:0;z-index:-2"></canvas>
+<div style="position:fixed;inset:0;background:radial-gradient(circle at 10% 10%, rgba(255,33,86,0.03), transparent 6%), radial-gradient(circle at 90% 90%, rgba(255,123,154,0.02), transparent 10%);z-index:-1"></div>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">SNPM</div>
+      <div>
+        <h1>Smart National Park Management</h1>
+        <p class="lead">AI system for Fire Risk, Poaching Risk, Visitor Forecast & Wildlife Detection — neon demo & model docs</p>
+      </div>
+    </div>
+    <div>
+      <a href="snpm_project_final_with_app.zip" class="btn" download>Download ZIP</a>
+      <a href="http://localhost:8501" class="btn ghost" style="margin-left:8px">Open Local Dashboard</a>
+    </div>
+  </header>
+
+  <div class="layout" style="margin-top:18px">
+    <main>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div>
+            <div class="neon animated glint" style="font-size:20px">Project Overview</div>
+            <div class="sub" style="margin-top:8px">SNPM is a laptop-only AI system (no sensors). Train models on synthetic or real data in Colab, run dashboard locally with Streamlit.</div>
+          </div>
+          <div style="text-align:right">
+            <div class="pill">B.Tech PBL</div>
+            <div style="margin-top:8px;color:var(--muted)">Status: Demo ready</div>
+          </div>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Fire Risk</strong>
+            <div class="muted">Regression model predicting risk % (0-100).</div>
+          </div>
+          <div class="feature">
+            <strong>Poaching Risk</strong>
+            <div class="muted">Binary classifier suggesting high/low risk zones.</div>
+          </div>
+          <div class="feature">
+            <strong>Visitor Forecast</strong>
+            <div class="muted">Next-day visitor counts using time-series features.</div>
+          </div>
+          <div class="feature">
+            <strong>Wildlife Detection</strong>
+            <div class="muted">Transfer learning (MobileNetV2) for camera-trap images (optional).</div>
+          </div>
+        </div>
+
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.02);margin:12px 0">
+
+        <h3 style="margin:0">Interactive Neon Demo</h3>
+        <p class="muted" style="margin-top:6px">Client-side heuristics mirror the logic in your Colab models so you can demo predictions in presentations.</p>
+
+        <div class="demo-grid">
+          <!-- Fire demo -->
+          <div class="card">
+            <strong>Fire Risk (demo)</strong>
+            <div style="margin-top:8px" class="muted">Adjust inputs and click Predict.</div>
+            <div style="margin-top:10px">
+              <div class="control"><label class="muted">Temp</label><input id="dtemp" type="range" min="5" max="50" value="30"><input id="dtempN" type="number" value="30" style="width:70px"></div>
+              <div class="control"><label class="muted">Humidity</label><input id="dhum" type="range" min="5" max="100" value="45"><input id="dhumN" type="number" value="45" style="width:70px"></div>
+              <div class="control"><label class="muted">Wind</label><input id="dwind" type="range" min="0" max="60" value="8"><input id="dwindN" type="number" value="8" style="width:70px"></div>
+              <div class="control"><label class="muted">Rain</label><input id="drain" type="range" min="0" max="50" value="0"><input id="drainN" type="number" value="0" style="width:70px"></div>
+              <div style="margin-top:10px" class="control"><label class="muted">Veg</label>
+                <select id="dveg"><option value="0">Dense</option><option value="1">Sparse</option><option value="2">Grassland</option></select>
+                <button id="firePredict" class="btn" style="margin-left:8px">Predict</button>
+              </div>
+              <div id="fireResult" class="output">Result: —</div>
+            </div>
+          </div>
+
+          <!-- Poaching demo -->
+          <div class="card">
+            <strong>Poaching Risk (demo)</strong>
+            <div style="margin-top:8px" class="muted">Simple classifier emulating Colab logic.</div>
+            <div style="margin-top:10px">
+              <div class="control">
+                <select id="dseason"><option value="0">Monsoon</option><option value="1">Summer</option><option value="2">Winter</option></select>
+                <select id="dzone"><option value="0">Core</option><option value="1">Buffer</option><option value="2">Edge</option></select>
+              </div>
+              <div class="control"><label class="muted">Dist to village</label><input id="ddist" type="number" min="0" max="50" value="5" style="width:90px"></div>
+              <div class="control"><label class="muted">Past incidents</label><input id="dpast" type="number" min="0" max="10" value="0" style="width:90px"></div>
+              <div class="control"><label class="muted">Patrol freq</label><select id="dpatrol"><option value="0">Low</option><option value="1">Medium</option><option value="2">High</option></select></div>
+              <div style="margin-top:10px"><button id="poachPredict" class="btn">Predict</button></div>
+              <div id="poachResult" class="output">Result: —</div>
+            </div>
+          </div>
+
+          <!-- Visitor demo -->
+          <div class="card">
+            <strong>Visitor Forecast (demo)</strong>
+            <div style="margin-top:8px" class="muted">Quick next-day forecast demo.</div>
+            <div style="margin-top:10px">
+              <div class="control"><label class="muted">Day (0 Mon - 6 Sun)</label><input id="dday" type="number" min="0" max="6" value="2" style="width:90px"></div>
+              <div class="control"><label class="muted">Holiday</label><input id="dhol" type="checkbox"></div>
+              <div class="control"><label class="muted">Bad weather</label><input id="dbad" type="checkbox"></div>
+              <div class="control"><label class="muted">Prev visitors</label><input id="dprev" type="number" min="0" max="5000" value="200" style="width:120px"></div>
+              <div style="margin-top:8px"><button id="visitPredict" class="btn">Predict</button></div>
+              <div id="visitResult" class="output">Result: —</div>
+            </div>
+          </div>
+
+          <!-- Model summary -->
+          <div class="card" style="grid-column:1 / -1;margin-top:6px">
+            <h3 style="margin:0">AI Model — Full Details (for viva / report)</h3>
+            <div class="ai-block">
+              <h4>Overall architecture</h4>
+              <p class="muted">SNPM consists of 4 modules: Fire Risk (regression), Poaching Risk (classification), Visitor Forecast (time-series regression), and Wildlife Detection (image classification via transfer learning).</p>
+
+              <h4>Datasets</h4>
+              <table>
+                <tr><th>File</th><th>Columns / Description</th></tr>
+                <tr><td>synthetic_fire.csv</td><td>temperature, humidity, wind_speed, rainfall, veg_type, fire_risk (0-100)</td></tr>
+                <tr><td>synthetic_poaching.csv</td><td>season, zone_type, dist_to_village, past_incidents, patrol_freq, poaching_label (0/1)</td></tr>
+                <tr><td>synthetic_visitors.csv</td><td>date, day_of_week, holiday, bad_weather, visitors</td></tr>
+                <tr><td>wildlife_images/*</td><td>folder per class: e.g. tiger/, deer/, elephant/ — used for transfer learning</td></tr>
+              </table>
+
+              <h4>Feature engineering & sample features</h4>
+              <ul class="muted">
+                <li>Fire: temperature, humidity, wind_speed, rainfall, veg_type (categorical encoded 0/1/2)</li>
+                <li>Poaching: season (cat), zone_type (cat), distance to village (numeric), past incidents (count), patrol_freq (cat)</li>
+                <li>Visitor: day_of_week, holiday flag, bad_weather flag, previous day visitors (lag feature)</li>
+                <li>Wildlife: images resized to 160×160, augmented (flip, rotate, shift) for transfer learning</li>
+              </ul>
+
+              <h4>Models & hyperparameters</h4>
+              <table>
+                <tr><th>Module</th><th>Model</th><th>Key hyperparams</th></tr>
+                <tr><td>Fire Risk</td><td>RandomForestRegressor</td><td>n_estimators=80, max_depth=None, random_state=42</td></tr>
+                <tr><td>Poaching</td><td>RandomForestClassifier</td><td>n_estimators=100, random_state=24</td></tr>
+                <tr><td>Visitors</td><td>RandomForestRegressor</td><td>n_estimators=80, random_state=11, features include lag</td></tr>
+                <tr><td>Wildlife</td><td>MobileNetV2 (transfer learning)</td><td>base frozen, dense head 128 neurons, epochs=6 (default), batch=16</td></tr>
+              </table>
+
+              <h4>Training & evaluation</h4>
+              <p class="muted">Typical pipeline:</p>
+              <ol class="muted">
+                <li>Split dataset train/test (80/20)</li>
+                <li>Train RandomForest (or chosen model)</li>
+                <li>Evaluate — Fire/Visitor: RMSE, Poaching: accuracy/precision/recall, Wildlife: accuracy / confusion matrix</li>
+              </ol>
+
+              <h4>Saved files</h4>
+              <p class="muted">Models saved in <code>/models</code> (joblib for numeric models, .h5 for Keras wildlife model). App loads these files at runtime.</p>
+
+              <h4>Sample training command & code (fire)</h4>
+              <pre class="code">python src/generate_synthetic_data.py
+python src/train_numeric_models.py
+# results: models/fire_model.joblib</pre>
+
+              <h4>Notes for reproducibility</h4>
+              <ul class="muted">
+                <li>Set random_state for reproducible splits</li>
+                <li>Document dataset generation parameters (seeds, distributions)</li>
+                <li>For the wildlife model, ensure 50+ images per class for decent accuracy</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3 style="margin:0">How to run locally (quick)</h3>
+        <div class="muted" style="margin-top:8px">
+          1) Unzip the project folder and open <code>snpm_project/src</code>.<br>
+          2) Install packages:<br>
+          <div class="code">pip install streamlit pandas numpy scikit-learn matplotlib seaborn joblib tensorflow pillow</div>
+          3) Run the dashboard:<br>
+          <div class="code">streamlit run app.py</div>
+          4) Open <code>http://localhost:8501</code> in your browser.
+        </div>
+      </div>
+    </main>
+
+    <aside>
+      <div class="card">
+        <div class="stat"><div class="muted">Project</div><div style="font-weight:800">SNPM</div></div>
+        <div class="stat"><div class="muted">Author</div><div style="font-weight:800">Pushkar Singh</div></div>
+        <div class="stat"><div class="muted">Stack</div><div style="font-weight:800">Python · Streamlit · scikit-learn · TensorFlow</div></div>
+        <div style="margin-top:12px">
+          <h4 style="margin:0">Modules</h4>
+          <div class="module-list">
+            <div class="module"><div>Overview</div><div class="muted">Landing</div></div>
+            <div class="module"><div>Fire Risk</div><div class="muted">Regression</div></div>
+            <div class="module"><div>Poaching</div><div class="muted">Classifier</div></div>
+            <div class="module"><div>Visitors</div><div class="muted">Time-series</div></div>
+            <div class="module"><div>Wildlife</div><div class="muted">Transfer learn</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 style="margin:0">Files included</h4>
+        <div class="muted" style="margin-top:8px">
+          /src (app.py, training scripts) <br>
+          /data (CSV datasets) <br>
+          /models (trained joblib & h5) <br>
+          README.txt
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 style="margin:0">Contact</h4>
+        <div class="muted" style="margin-top:8px">If you need the PPT or report text for submission, I can auto-generate them. Click below to request.</div>
+        <div style="margin-top:10px"><a class="btn ghost" id="requestReport">Generate Report Text</a></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>© <span id="yr"></span> SNPM — Smart National Park Management. Neon demo & full model docs ready for your PBL.</footer>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Link download if ZIP is placed next to this file
+  document.querySelectorAll('a[download]').forEach(a => { if(!a.href) a.href='snpm_project_final_with_app.zip' });
+
+  // Demo model logic (client-side heuristics)
+  function fireHeuristic(temp, hum, wind, rain, veg){
+    let score = temp*1.5 - hum*0.8 + wind*1.2 - rain*2 + veg*10;
+    let min=-200, max=200;
+    let pct = (score - min)/(max-min)*100;
+    pct = Math.max(0, Math.min(100, pct));
+    return pct;
+  }
+  function poachHeuristic(season, zone, dist, past, patrol){
+    let score = 0;
+    score += (zone==2)?0.9: (zone==1)?0.4:0;
+    score += (dist<3)?0.6:0;
+    score += (past>0)?0.7:0;
+    score -= patrol*0.6;
+    let prob = 1/(1+Math.exp(-(score-0.2)));
+    return {prob:prob, label: prob>0.5?1:0};
+  }
+  function visitHeuristic(dow, holiday, bad, prev){
+    let seasonFactor = 1 + 0.25*Math.sin((new Date()).getDay()/365*2*Math.PI);
+    let base = 200 * seasonFactor;
+    let mult = (dow>=5)?1.2:0.85;
+    if(bad) mult*=0.7;
+    let pred = Math.round(base*mult + (holiday?50:0) + prev*0.1 + (Math.random()*40-20));
+    return Math.max(0,pred);
+  }
+
+  // UI wiring
+  function bindRange(rangeId, numId){
+    const r=document.getElementById(rangeId), n=document.getElementById(numId);
+    r.addEventListener('input', ()=> n.value=r.value);
+    n.addEventListener('change', ()=> { let v=Number(n.value); if(!isNaN(v)) r.value=v; });
+  }
+  bindRange('dtemp','dtempN'); bindRange('dhum','dhumN'); bindRange('dwind','dwindN'); bindRange('drain','drainN');
+
+  document.getElementById('firePredict').addEventListener('click', ()=>{
+    const temp=Number(document.getElementById('dtemp').value);
+    const hum=Number(document.getElementById('dhum').value);
+    const wind=Number(document.getElementById('dwind').value);
+    const rain=Number(document.getElementById('drain').value);
+    const veg=Number(document.getElementById('dveg').value);
+    const p=fireHeuristic(temp,hum,wind,rain,veg);
+    let msg = `Fire risk: ${p.toFixed(1)}%`;
+    if(p>70) msg += '  🔥 HIGH';
+    else if(p>40) msg += '  ⚠️ MODERATE';
+    else msg += '  ✅ LOW';
+    document.getElementById('fireResult').textContent = msg;
+  });
+
+  document.getElementById('poachPredict').addEventListener('click', ()=>{
+    const season=Number(document.getElementById('dseason').value);
+    const zone=Number(document.getElementById('dzone').value);
+    const dist=Number(document.getElementById('ddist').value);
+    const past=Number(document.getElementById('dpast').value);
+    const patrol=Number(document.getElementById('dpatrol').value);
+    const r=poachHeuristic(season,zone,dist,past,patrol);
+    document.getElementById('poachResult').textContent = `Label: ${r.label} (prob ${(r.prob*100).toFixed(1)}%)` + (r.label? '  🚨 High risk' : '  ✅ Low risk');
+  });
+
+  document.getElementById('visitPredict').addEventListener('click', ()=>{
+    const dow=Number(document.getElementById('dday').value);
+    const holiday=document.getElementById('dhol').checked;
+    const bad=document.getElementById('dbad').checked;
+    const prev=Number(document.getElementById('dprev').value);
+    const p=visitHeuristic(dow,holiday,bad,prev);
+    document.getElementById('visitResult').textContent = `Visitors (est): ${p}`;
+  });
+
+  // Request report button (placeholder)
+  document.getElementById('requestReport').addEventListener('click', (e)=>{
+    e.preventDefault();
+    alert('I will generate a concise project report text (3-4 pages). Reply "Make report" to proceed.');
+  });
+
+  // -----------------------------------------
+  // Background canvas animation (red neon particles + soft wave)
+  // -----------------------------------------
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = innerWidth, H = canvas.height = innerHeight;
+  window.addEventListener('resize', ()=>{ W=canvas.width=innerWidth; H=canvas.height=innerHeight; init(); });
+
+  let particles=[];
+  function rand(a,b){return Math.random()*(b-a)+a;}
+  function Particle(){
+    this.x = rand(0,W);
+    this.y = rand(0,H);
+    this.vx = rand(-0.25,0.25);
+    this.vy = rand(-0.25,0.25);
+    this.r = rand(0.8,3.2);
+    this.c = `rgba(255,50,90,${rand(0.5,1)})`;
+  }
+  function init(){
+    particles=[];
+    let count = Math.round((W*H)/110000);
+    for(let i=0;i<count;i++) particles.push(new Particle());
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // subtle wave overlay
+    ctx.fillStyle = 'rgba(2,2,3,0.35)';
+    ctx.fillRect(0,0,W,H);
+    // draw particles
+    for(let p of particles){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+      if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+      const grd = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*6);
+      grd.addColorStop(0,p.c); grd.addColorStop(1,'rgba(2,2,3,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+    }
+    // connect close particles with faint red lines
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        let a=particles[i], b=particles[j];
+        let dx=a.x-b.x, dy=a.y-b.y;
+        let d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){
+          ctx.strokeStyle = `rgba(255,60,110,${(0.12 - (d/120)*0.1).toFixed(3)})`;
+          ctx.lineWidth = 0.7;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  init(); draw();
+
+  // tiny floating neon glints (CSS-free)
+  setInterval(()=>{ // occasionally nudge particles
+    for(let i=0;i<Math.min(4,particles.length);i++){
+      let k = Math.floor(Math.random()*particles.length);
+      particles[k].vx += rand(-0.2,0.2); particles[k].vy += rand(-0.2,0.2);
+    }
+  },900);
+
+</script>
+</body>
+</html>
